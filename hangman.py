@@ -1,5 +1,6 @@
 #!/usr/bin/python3.5
 # hangman.py - traditional hangman game
+# coded by taladan At gmail Dot com
 
 import random, os, time
 
