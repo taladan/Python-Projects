@@ -7,7 +7,7 @@ PyDice v1.1
 A program to roll dice ranging from d4 to d100.
 
 Author: Taladan
-Last Edited: November 2017
+Last Edited: November 20, 2017
 """
 
 from PyQt5.QtCore import QCoreApplication
