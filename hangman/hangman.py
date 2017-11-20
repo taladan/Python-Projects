@@ -93,22 +93,23 @@ def graphic(num):
            }
     return pic.get(num)
 
+
 def display():
     mydisplay = '''Welcome to HangPy!
 
-    Word: %s                      Incorrect Guesses Remaining: %d
+    Word: {word}                      Incorrect Guesses Remaining: {igr}
 
 
 
 
-                       %s
+                       {img}
 
 
 
 
 
-    Currently Guessed: %s
-    Total wrong guesses: %d
+    Currently Guessed: {guessed}
+    Total wrong guesses: {total}
 
         '''
     wrong_num = 0
@@ -123,25 +124,28 @@ def display():
         character_range = range(ord('a'), ord('z'))
         if remaining == 0:
             exitcode = ask('lose!')
-            print(mydisplay % (''.join(secret), remaining, graphic(wrong_num),
-                               guessed, wrong_num))
+            print(mydisplay.format(word=''.join(secret), igr=remaining,
+                                   img=graphic(wrong_num), guessed=guessed,
+                                   total=wrong_num))
             break
 
         if ''.join(secret) == choice:
             exitcode = ask('win!')
-            print(mydisplay % (''.join(secret), remaining, graphic(wrong_num),
-                               guessed, wrong_num))
+            print(mydisplay.format(word=''.join(secret), igr=remaining,
+                                   img=graphic(wrong_num), guessed=guessed,
+                                   total=wrong_num))
             break
         else:
             os.system('clear')
-            print(mydisplay % (''.join(secret), remaining, graphic(wrong_num),
-                               guessed, wrong_num))
+            print(mydisplay.format(word=''.join(secret), igr=remaining,
+                                   img=graphic(wrong_num), guessed=guessed,
+                                   total=wrong_num))
             pick = input('Please enter a letter (QUIT to exit): ')
             if pick == 'QUIT':
                 exitcode = 'QUIT'
                 break
             elif ord(pick.lower()) not in character_range:
-                print('Please enter a letter!')
+                print('Please enter a single letter!')
                 time.sleep(1)
             elif pick.lower() in guessed:
                 print('You already picked %s!' % (pick))
