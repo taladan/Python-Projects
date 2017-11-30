@@ -1,0 +1,11 @@
+{
+  "name": "pycgen",
+  "version": "1.0.0",
+  "description": "Python based Character Generator for Dungeons and Dragons 5e.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Taladan@gmail.com",
+  "license": "GPL-3.0"
+}
