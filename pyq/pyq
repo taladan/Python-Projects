@@ -1,13 +1,18 @@
 #!/usr/bin/python3
 # -*- coding utf-8 -*-
 """
-pycue -- it queues commandline commands
+pyq -- it queues commandline commands
 to be run after the previous command has
 run and ended.
 
-Author: Taladan@Gmail.com
+This software is released under LGPL v3.
+The text of the license can be found at:
+    https://www.gnu.org/licenses/lgpl-3.0.en.html
+
+Author: Taladan@gmail.com
 Last Edited: January 13, 2018
 """
+
 import getpass
 import os
 import subprocess
