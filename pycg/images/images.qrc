@@ -1,0 +1,36 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/images">
+    <file>10-die.png</file>
+    <file>11-die.png</file>
+    <file>12-die.png</file>
+    <file>13-die.png</file>
+    <file>14-die.png</file>
+    <file>15-die.png</file>
+    <file>16-die.png</file>
+    <file>17-die.png</file>
+    <file>18-die.png</file>
+    <file>19-die.png</file>
+    <file>1-die.png</file>
+    <file>20-die.png</file>
+    <file>2-die.png</file>
+    <file>3-die.png</file>
+    <file>4-die.png</file>
+    <file>5-die.png</file>
+    <file>6-die.png</file>
+    <file>7-die.png</file>
+    <file>8-die.png</file>
+    <file>9-die.png</file>
+    <file>d20-icon.png</file>
+    <file>pycgen_icon.png</file>
+    <file>pycharm.png</file>
+    <file>rdo-btn.xcf</file>
+    <file>rdo-checked-hover.png</file>
+    <file>rdo-checked.png</file>
+    <file>rdo-checked-pressed.png</file>
+    <file>rdo-unchecked-hover.png</file>
+    <file>rdo-unchecked.png</file>
+    <file>rdo-unchecked-pressed.png</file>
+    <file>statshld.old.png</file>
+    <file>statshld.png</file>
+</qresource>
+</RCC>

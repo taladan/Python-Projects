@@ -1,0 +1,38 @@
+[INFO  - 2017-12-09T19:33:32.511Z] GhostDriver - Main - running on port 52557
+[INFO  - 2017-12-09T19:33:32.755Z] Session [d77d7840-dd17-11e7-9c36-e112d0dbecad] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Unknown; Linux x86_64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2017-12-09T19:33:32.757Z] Session [d77d7840-dd17-11e7-9c36-e112d0dbecad] - page.customHeaders:  - {}
+[INFO  - 2017-12-09T19:33:32.758Z] Session [d77d7840-dd17-11e7-9c36-e112d0dbecad] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"linux-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2017-12-09T19:33:32.759Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: d77d7840-dd17-11e7-9c36-e112d0dbecad
+[ERROR - 2017-12-09T19:33:41.450Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1512848021346
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-12-09T19:33:41.692Z] Session [d77d7840-dd17-11e7-9c36-e112d0dbecad] - page.onError - msg: TypeError: undefined is not a function (evaluating 'a.o.postMessage(ve(d),a.D)')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-12-09T19:33:41.693Z] Session [d77d7840-dd17-11e7-9c36-e112d0dbecad] - page.onError - stack:
+  Of (https://securepubads.g.doubleclick.net/gpt/pubads_impl_170.js:1)
+  vg (https://securepubads.g.doubleclick.net/gpt/pubads_impl_170.js:1)
+  P (https://securepubads.g.doubleclick.net/gpt/pubads_impl_170.js:1)
+  (anonymous function) (:0)
+  renderBase64 (:0)
+  createFailedCommandEH (phantomjs://platform/errors.js:229)
+  handleFailedCommandEH (phantomjs://platform/errors.js:235)
+  _handleLocateCommand (phantomjs://code/webelementlocator.js:240)
+  (anonymous function) (phantomjs://code/webelementlocator.js:230)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-12-09T19:33:42.143Z] Session [d77d7840-dd17-11e7-9c36-e112d0dbecad] - page.onError - msg: TypeError: undefined is not a function (evaluating 'a.o.postMessage(ve(d),a.D)')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-12-09T19:33:42.145Z] Session [d77d7840-dd17-11e7-9c36-e112d0dbecad] - page.onError - stack:
+  Of (https://securepubads.g.doubleclick.net/gpt/pubads_impl_170.js:1)
+  vg (https://securepubads.g.doubleclick.net/gpt/pubads_impl_170.js:1)
+  P (https://securepubads.g.doubleclick.net/gpt/pubads_impl_170.js:1)
+  (anonymous function) (:0)
+  renderBase64 (:0)
+  createFailedCommandEH (phantomjs://platform/errors.js:229)
+  handleFailedCommandEH (phantomjs://platform/errors.js:235)
+  _handleLocateCommand (phantomjs://code/webelementlocator.js:240)
+  (anonymous function) (phantomjs://code/webelementlocator.js:230)
+
+  phantomjs://platform/console++.js:263 in error

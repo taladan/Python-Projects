@@ -1,0 +1,21 @@
+b'
+function nameGen(type){
+    var nm1 = ["Abider","Achiever","Actor","Adapter","Adviser","Aegis","Agent","Animal","Apparatus","Armam'b'ent","Artist","Audience","Author","Awakener","Basher","Bastion","Battler","Bear","Beast","Beauty","Beetle","Bender","Binder","Bl'b'ade","Book","Booster","Boot","Bouncer","Brain","Brander","Brawler","Breaker","Bringer","Browser","Bruiser","Buffet","Bug","Build'b'er","Bulwark","Calmer","Candle","Cannon","Carer","Carriage","Carrier","Cart","Carver","Case","Caster","Catcher","Chain","Chains"'b',"Challenger","Champion","Chaperon","Charger","Chaser","Chopper","Claymore","Cleaver","Climber","Clock","Club","Clubber","Coil",'b'"Commander","Controller","Cook","Counter","Creator","Creature","Creese","Crew","Croaker","Crow","Crumbler","Crusher","Curator","'b'Curtana","Custodian","Cutlas","Cutlass","Cutter","Dagger","Data","Dealer","Decipherer","Defender","Definer","Delver","Designer",'b'"Destroyer","Diagnoser","Director","Dirk","Diver","Doctor","Dozer","Dreamer","Drifter","Driver","Drone","Echo","Edge","Enchanter'b'","Epee","Eraser","Estoc","Etcher","Examiner","Expert","Falchion","Familiar","Fighter","Figure","Fire","Five","Flail","Flame","F'b'luke","Foil","Follower","Forger","Four","Friend","Fumbler","Gasher","Gauger","Ghost","Giant","Gift","Glaive","Glancer","Griller"'b',"Grunter","Guardian","Guest","Guide","Hacker","Hammer","Handler","Heart","Help","Hook","Horn","Host","Hummer","Hunter","Image",'b'"Inspector","Iron","Judge","Junior","Jury","Katana","Kid","Killer","Knife","Knocker","Kris","Launcher","Leaper","Lifter","Lock",'b'"Locket","Lurker","Mace","Machine","Mark","Marker","Mask","Masker","Mauler","Melter","Menace","Mentor","Merger","Metal","Mime","'b'Mistake","Model","Molder","Murderer","Nameless","Needle","Nemo","Novice","Nurse","Observer","Officer","Ogler","One","Ornament","'b'Painter","Passenger","Patient","Patriot","Pierce","Pilot","Pious","Player","Porter","Preacher","Pretender","Prize","Probe","Prot'b'ector","Prowler","Punisher","Query","Ravager","Reader","Reckoner","Relic","Render","Rescuer","Responder","Reviewer","Rider","Run'b'e","Saber","Sabre","Safeguard","Salvager","Saviour","Scimitar","Scorcher","Scratcher","Scrubber","Searcher","Security","Seeker",'b'"Senior","Senser","Sentinel","Sentry","Servant","Shaper","Shepherd","Shield","Shielder","Shredder","Slasher","Slicer","Smasher",'b'"Smiter","Snooper","Spark","Sparkle","Special","Spirit","Sprinter","Sprite","Squasher","Stalker","Status","Steel","Steeple","Sti'b'ck","Sticks","Stitcher","Striker","Student","Stumbler","Subject","Suit","Sunderer","Supporter","Surveyor","Sword","Tackler","Tau'b'nter","Teacher","Teaser","Tempter","Tester","Thief","Thinker","Three","Thunder","Tinkerer","Titan","Toad","Toledo","Tutor","Twis'b'ter","Two","Undoer","Unit","Unmaker","Unsung","Vessel","Victor","Visitor","Voice","Walker","Ward","Warden","Watcher","Whisperer"'b',"Wielder","Winker","Winner","Wonderer","Wrestler","Zealot","Zero"];
+    
+    var tp = type;
+    var br = "";
+    var element = document.cre'b'ateElement("div");
+    element.setAttribute("id", "result");
+    
+    for(i = 0; i < 10; i++){
+        rnd = Math.random() * nm1.length | 0;
+        'b"names = nm1[rnd];
+        br = document.createElement('br');    
+        element.appendChild(document.createTextNode(names));
+        element.appendC"b'hild(br);
+    }
+    if(document.getElementById("result")){
+        document.getElementById("placeholder").removeChild(document.getElementByI'b'd("result"));
+    }        
+    document.getElementById("placeholder").appendChild(element);
+}'

@@ -1,0 +1,278 @@
+#!/usr/bin/python3
+# -*- coding utf-8 -*-
+"""
+This file builds the attributes layout and contents of
+the attributes tab in PyCGen.
+
+Author: Taladan
+Last Edited: December 18, 2017
+"""
+from PyQt5.QtWidgets import (QComboBox, QDialog, QFormLayout, QGridLayout,
+                             QHBoxLayout, QLabel, QPushButton, QVBoxLayout,
+                             QWidget)
+from PyQt5 import QtGui
+from PyQt5 import QtCore
+import random
+import pycgError
+# from PyQt5.QtCore import (QSize)
+
+
+class roll_popup(QDialog):
+
+    def __init__(self, rolls, attributes, attributes_set):
+        # QWidget.__init__(self)
+        super().__init__()
+
+        # Necessary variables
+        self.attributes = attributes
+        self.attributes_set = attributes_set
+        self.temprolls = rolls
+        self.font = QtGui.QFont("MathJax_Calligraphic", 12)
+
+        # RollPopup (rp) Layout stuff
+        self.rp_vbox_layout = QVBoxLayout()
+        self.rp_butts_layout = QHBoxLayout()
+        self.rp_grid_layout = QGridLayout()
+
+        # Roll Header
+        self.rl_header = QLabel("Current roll:")
+        self.rl_header.setFont(self.font)
+
+        # Current Roll
+        self.currentRoll = self.set_current_roll()
+
+        # Roll Footer
+        self.rl_footer = QLabel("Assign to:")
+        self.rl_footer.setFont(self.font)
+
+        # Set up choice combobox
+        if len(self.attributes) == 6:
+            self.choice = self.build_choice_combo()
+
+        elif len(self.attributes) == 0:
+            self.choice = QLabel()
+
+        # Set up our buttons
+        self.apply_butt = QPushButton("Apply")
+        self.apply_butt.clicked.connect(self.apply_on_click)
+        self.apply_butt.setMaximumWidth(100)
+
+        # add buttons to layout
+        self.rp_butts_layout.addWidget(self.apply_butt)
+
+        # add widgets to grid
+        self.rp_grid_layout.addWidget(self.rl_header, 0, 0)
+        self.rp_grid_layout.addWidget(self.currentRoll, 0, 1)
+        self.rp_grid_layout.addWidget(self.rl_footer, 1, 0)
+        self.rp_grid_layout.addWidget(self.choice, 1, 1)
+        self.rp_grid_layout.addLayout(self.rp_butts_layout, 2, 0)
+
+        # set up layouts
+        self.rp_vbox_layout.addLayout(self.rp_grid_layout)
+        self.setLayout(self.rp_vbox_layout)
+
+    # Fires when the Okay button is clicked
+    def apply_on_click(self):
+
+        try:
+            # Add the attribute and value chosen to the dictionary
+            self.attributes_set[self.choice.currentText()] = self.temprolls[0]
+
+            # Remove the roll assigned and change the value
+            del self.temprolls[0]
+            self.cr.setText(str(self.temprolls[0]))
+
+            # remove the attribute assigned and redo the combobox
+            if len(self.attributes) > 1:
+                self.attributes.remove(self.choice.currentText())
+
+            elif len(self.attributes) == 1:
+                self.attributes = [None]
+
+            self.cb.clear()
+            self.choice.addItems(self.attributes)
+
+        except IndexError:
+            self.accept()
+
+    # Setup the Current roll label and populate the value
+    def set_current_roll(self):
+
+        self.cr = QLabel()
+        self.cr.setText(str(self.temprolls[0]))
+        self.cr.setFont(self.font)
+        return self.cr
+
+    # Build the choice combobox
+    def build_choice_combo(self):
+
+        self.cb = QComboBox()
+        model = QtGui.QStandardItemModel(self.cb)
+
+        for i in self.attributes:
+            item = QtGui.QStandardItem(i)
+            item.setFont(self.font)
+            model.appendRow(item)
+
+        self.cb.setModel(model)
+        self.cb.show()
+        self.cb.setMaximumWidth(75)
+
+        return self.cb
+
+
+class BuildInset(QWidget):
+
+    def __init__(self, parent=None):
+
+        super().__init__(self, parent)
+        self.attribute_font = QtGui.QFont("MathJax_Calligraphic", 14)
+        self.mod_font = QtGui.QFont("MathJax_Calligraphic", 18)
+        self.setStyleSheet("""QWidget {border-image:\
+                           url(images/statshld.png)\
+                           0 0 0 0 stretch stretch;}""")
+
+    # Attribute Inset label setup
+class BldAttrLbl(QWidget):
+
+    def __init__(self, attribute, attributes_set, parent=None)
+
+        QWidget.__init__(self, parent=parent)
+        self.attrib_inset = QLabel()
+        self.attrib_inset.setObjectName(self.attribute)
+        if self.attributes_set[self.attribute] is not None:
+            self.attrib_inset.setText(str(self.attributes_set[self.attribute]))
+        self.attrib_inset.setFont(self.attribute_font)
+        self.attrib_inset.setAlignment(QtCore.Qt.AlignCenter)
+        self.attrib_inset.setScaledContents(True)
+        self.attrib_inset.resize(75, 75)
+
+        return self.attrib_inset
+
+    # Mod Inset label setup
+    def bld_mod_lbl(self, attribute, attributes_set):
+        self.mod_inset = QLabel()
+        self.mod_inset.setObjectName(self.attribute)
+        if self.attributes_set[self.attribute] is not None:
+            self.mod_inset.setText(str(
+                (self.attributes_set[self.attribute] - 10) / 2))
+        self.mod_inset.setFont(self.mod_font)
+        self.mod_inset.setAlignment(QtCore.Qt.AlignCenter)
+        self.mod_inset.setScaledContents(True)
+        self.mod_inset.resize(75, 75)
+
+        return self.mod_inset
+
+
+class BuildAttributesTab(QWidget):
+
+    def __init__(self):
+
+        super().__init__()
+        self.initUi()
+
+    def initUi(self):
+
+        # Declare variables necessary for attributes tab
+        self.attributes = ['str', 'dex', 'con', 'int', 'wis', 'cha']
+        self.attributes_set = {'str': None, 'dex': None, 'con': None,
+                               'int': None, 'wis': None, 'cha': None}
+        self.d20 = [range(1, 21)]
+        self.font = QtGui.QFont("MathJax_Calligraphic", 14)
+        self.header_font = QtGui.QFont("MathJax_Calligraphic", 18)
+        self.rolls = []
+
+        for i in range(6):
+            self.rolls.append(self.roll())
+
+        # Create QVBoxLayout - Whole form
+        vbox_layout = QVBoxLayout()
+
+        # Create QHboxLayout - labels go here
+        hbox_labels_layout = QHBoxLayout()
+        hbox_buttons_layout = QHBoxLayout()
+
+        # Create QGridLayout - special magic to overlay labels
+        self.grid_layout = QGridLayout()
+
+        # Create QFormLayout - Even more special magic because fuck gridlayout
+        form_layout = QFormLayout()
+
+        """
+        Widget creation section
+        """
+        # - Buttons
+        self.roll_but = QPushButton("&Roll")
+        self.roll_but.resize(100, 25)
+        self.roll_but.clicked.connect(self.open_roll_popup)
+        self.apply_but = QPushButton("&Apply")
+        self.apply_but.resize(100, 25)
+
+        hbox_buttons_layout.addStretch(1)
+        hbox_buttons_layout.addWidget(self.roll_but)
+        hbox_buttons_layout.addWidget(self.apply_but)
+        hbox_buttons_layout.addStretch(1)
+
+        # Set up labels with text
+        self.attribute_labels = {}
+        self.txt_labels = {}
+        self.mod_labels = {}
+        # self.grid_layout.setSpacing(150)
+
+        for i in self.attributes:
+
+            # Set up text labels (Str, Dex, Con, Int, Wis, Cha)
+            self.i_txt_label = QLabel(i.title())
+            self.i_txt_label.setFont(self.header_font)
+            self.i_txt_label.setAlignment(QtCore.Qt.AlignRight)
+            self.txt_labels[i] = self.i_txt_label
+
+            # Set up value in attribute labels (attr scores)
+            self.w = BuildInset()
+            self.attribute_label = self.w.bld_attr_lbl(i, self.attributes_set)
+            self.mod_label = self.w.bld_mod_lbl(i, self.attributes_set)
+            self.i_attribute_widget.setGeometry(QtCore.QRect(0, 0, 150, 150))
+            self.attribute_labels[i] = self.i_attribute_widget.attribute_inset
+            print(self.i_attribute_widget.attribute_inset)
+            self.mod_labels[i] = self.i_attribute_widget.mod_inset
+
+            self.formLayout.addRow(self.i_txt_label, self.attribute_label)
+
+        vbox_layout.addLayout(self.grid_layout)
+        vbox_layout.addLayout(hbox_buttons_layout)
+        self.setLayout(vbox_layout)
+
+    def roll(self):
+
+        # Roll 4d6, drop the lowest result
+        # TODO: Add different roll methods
+        rollList = []
+        for i in range(4):
+            die_roll = random.randrange(1, 7)
+            rollList.append(die_roll)
+
+        rollList.remove(min(rollList))
+
+        roll = sum(rollList)
+        return roll
+
+    def update_rolls(self):
+
+        for k, v in self.attribute_labels.items():
+            v.setText(str(self.attributes_set[k]))
+
+    def open_roll_popup(self):
+
+        if all(value is None for value in self.attributes_set.values()):
+            self.w = roll_popup(self.rolls,
+                                self.attributes,
+                                self.attributes_set)
+            self.w.exec_()
+            self.attributes_set = self.w.attributes_set
+            self.update_rolls()
+
+        else:
+            self.w = pycgError.errorDialog("Attributes have already been set.")
+            self.w.setGeometry(QtCore.QRect(100, 100, 150, 150))
+            self.w.show()
+            print(self.attributes_set)

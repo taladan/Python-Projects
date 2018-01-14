@@ -1,0 +1,103 @@
+#!/usr/bin/python3
+# -*- coding utf-8 -*-
+"""
+pycue -- it queues commandline commands
+to be run after the previous command has
+run and ended.
+
+Author: Taladan@Gmail.com
+Last Edited: January 13, 2018
+"""
+import getpass
+import os
+import subprocess
+import time
+
+
+# is this a real command?
+def line_parse(first_line):
+
+    cmd = first_line.split(' ')[0].rstrip()
+
+    exists = False
+
+    if subprocess.run(['which', cmd]):
+        exists = True
+
+    return exists
+
+
+def check_file_length(file):
+
+    return os.stat(file).st_size
+
+
+# read file, get first line and write the rest out to the original queue file
+def get_first_line(file):
+
+    with open(file, 'r') as fin:
+        data = fin.read().splitlines(True)
+    with open(file, 'w') as fout:
+        fout.writelines(data[1:])
+
+    return data[0]
+
+
+def block_root(uid):
+
+    if uid == 0:
+        raise ValueError('pyq> ERROR: Do not run this command as root/sudo')
+
+
+def mainloop():
+
+    user = getpass.getuser()
+    uid = os.getuid()
+    home = os.environ['HOME']
+    file = home + '/.pyq'
+    block_root(uid)
+    last_run = None
+
+    # check the user's home directory for .queue
+    if os.path.isfile(file):
+
+        # sleep until there's a command to run
+        while check_file_length(file) is 0:
+            time.sleep(3)
+
+        # get the first line
+        first_line = get_first_line(file).rstrip()
+        command_args = first_line.split(" ")
+        canrun = line_parse(first_line)
+
+        if canrun and last_run is None:
+
+            try:
+                subprocess.run(first_line, shell=True)
+                last_run = command_args[0]
+
+            except FileNotFoundError:
+                print("pyq> WARNING: file not found -- " + first_line)
+
+        elif canrun:
+
+            last_run = command_args[0]
+            tmp = os.popen("ps -Af").read()
+
+            while last_run in tmp:
+                time.sleep(5)
+                tmp = os.popen("ps -Af").read()
+            subprocess.run(first_line)
+
+        else:
+            print("pyq> WARNING: " + first_line + " is not a valid command.")
+
+    else:
+        # if .pyq doesn't exist, create the file
+        print("pyq> INFO: Queue file does not exist. Creating file .pyq.")
+        open("/home/" + user + "/.pyq", "a").close()
+
+
+if __name__ == '__main__':
+    while True:
+        mainloop()

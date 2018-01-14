@@ -1,0 +1,11 @@
+
+Flake8 found issues
+g:flake8_ignore has been deprecated in favour of flake8 config files
+http://flake8.readthedocs.org/en/latest/config.html
+Error detected while processing function pymode#buffer_post_write:
+line    2:
+E121: Undefined variable: b:pymode_modified
+E15: Invalid expression: g:pymode_rope_regenerate_on_write && b:pymode_modified
+line    8:
+E121: Undefined variable: b:pymode_modified
+E15: Invalid expression: g:pymode_lint_unmodified || (g:pymode_lint_on_write && b:pymode_modified)
